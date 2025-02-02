@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChatGPT Math Formatter</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- MathJax for rendering LaTeX math equations -->
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>ChatGPT Math Formatter</h1>
+    <p>Paste your ChatGPT output below. Any LaTeX math (wrapped in <code>$...$</code> or <code>$$...$$</code>) will be properly formatted for easy copy-pasting.</p>
+    
+    <textarea id="textInput" placeholder="Paste your text with math here..."></textarea>
+    
+    <button id="formatBtn">Format Text</button>
+    
+    <div id="output">
+      <h2>Formatted Output:</h2>
+      <div id="formattedText"></div>
+    </div>
+    
+    <button id="copyBtn" style="display: none;">Copy to Clipboard</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

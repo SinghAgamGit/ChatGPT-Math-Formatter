@@ -1,0 +1,99 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Centers everything horizontally */
+  align-items: center; /* Centers everything vertically */
+  min-height: 100vh; /* Ensures the page is fully covered */
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+.container {
+  width: 80%;
+  max-width: 600px;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Ensures everything inside is centered */
+  text-align: center;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 16px;
+  color: #555;
+  text-align: center; /* Ensures text is centered */
+}
+
+/* Centering the textarea perfectly */
+textarea {
+  width: 90%; /* Slightly less than full width to match UI */
+  height: 120px; /* Matches screenshot */
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px auto; /* Centers it inside the container */
+  resize: none;
+  display: block;
+}
+
+/* Center the placeholder text */
+textarea::placeholder {
+  text-align: center;
+}
+
+button {
+  display: block;
+  width: fit-content;
+  margin: 15px auto;
+  padding: 10px 20px;
+  border: none;
+  background-color: #007BFF;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#output {
+  margin-top: 20px;
+  text-align: left;
+}
+
+#formattedText {
+  background: #eee;
+  padding: 10px;
+  border-radius: 5px;
+  min-height: 50px;
+  font-size: 18px;
+  white-space: pre-wrap;
+  font-family: monospace;
+}
+
+#copyBtn {
+  background-color: #28a745;
+}
+
+#copyBtn:hover {
+  background-color: #218838;
+}
+
+.math-output {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 10px;
+}
