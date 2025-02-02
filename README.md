@@ -1,3 +1,4 @@
+Site - https://singhagamgit.github.io/ChatGPT-Math-Formatter/
 # ChatGPT Math Formatter 📄 ➝ 🧮
 A simple web tool that **formats ChatGPT-generated text**, properly renders **LaTeX math equations**, and makes the formatted output easy to copy-paste.
 
