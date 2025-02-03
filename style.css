@@ -131,7 +131,9 @@ button:hover {
   --bg-color: #121212; 
   --text-color: #e0e0e0;
   --container-bg: #1e1e1e;
+  --button-bg: #ff9800;
   --button-hover: #e68900;
+  --copy-button-bg: #ffb74d;
   --copy-button-hover: #ffa726;
   --textarea-bg: #252525;
   --border-color: #333;
@@ -151,26 +153,6 @@ body {
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* General button styles */
-button {
-  display: block;
-  width: fit-content;
-  margin: 15px auto;
-  padding: 10px 20px;
-  border: none;
-  background-color: var(--button-bg);
-  color: white;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s;
-}
-
-button:hover {
-  background-color: var(--button-hover);
-  transform: scale(1.05);
-}
-
 /* Dark Mode Toggle Button */
 #darkModeToggle {
   position: absolute;
@@ -181,13 +163,9 @@ button:hover {
   background: none;
   cursor: pointer;
   transition: color 0.3s ease, transform 0.3s ease;
+  color: var(--text-color);
 }
 
 #darkModeToggle:hover {
   transform: rotate(180deg);
-}
-
-/* Format Button - Colors Controlled by JavaScript */
-#formatBtn {
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
