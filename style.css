@@ -19,7 +19,7 @@ body {
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Ensures everything inside is centered */
+  align-items: center; 
   text-align: center;
 }
 
@@ -31,27 +31,43 @@ h1 {
 p {
   font-size: 16px;
   color: #555;
-  text-align: center; /* Ensures text is centered */
+  text-align: center; 
 }
 
-/* Centering the textarea perfectly */
+/* text stuff */
 textarea {
-  width: 90%; /* Slightly less than full width to match UI */
-  height: 120px; /* Matches screenshot */
+  width: 90%; 
+  height: 120px;
   font-size: 16px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin: 10px auto; /* Centers it inside the container */
+  margin: 10px auto; 
   resize: none;
   display: block;
+  text-align: center;
+  line-height: 120px; 
 }
 
-/* Center the placeholder text */
+
 textarea::placeholder {
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+
+#textInput {
+  text-align: center;
+  line-height: 120px; 
+}
+
+
+#textInput::placeholder {
+  text-align: center;
+}
+/* added button */
 button {
   display: block;
   width: fit-content;

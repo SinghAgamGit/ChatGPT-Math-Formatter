@@ -41,3 +41,23 @@ function copyToClipboard() {
   document.body.removeChild(tempElement);
   alert("Formatted text copied to clipboard!");
 }
+const textInput = document.getElementById('textInput');
+
+const phrases = [
+    "Paste your text with math here..."
+];
+
+let charIndex = 0;
+
+function typeText() {
+    if (charIndex < phrases[0].length) {
+        textInput.setAttribute("placeholder", phrases[0].substring(0, charIndex + 1));
+        charIndex++;
+        setTimeout(typeText, 100); 
+    }
+}
+
+window.onload = () => {
+    textInput.setAttribute("placeholder", ""); 
+    setTimeout(typeText, 500); 
+};
