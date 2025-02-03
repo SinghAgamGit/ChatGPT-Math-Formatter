@@ -23,7 +23,6 @@ function formatText() {
       .replace(/\$\$(.*?)\$\$/gs, '<div class="math-output">\\[$1\\]</div>')
       .replace(/\$(.*?)\$/gs, '<span class="math-output">\\($1\\)</span>');
   }
-
   outputDiv.innerHTML = formattedText;
   
   // Force MathJax to reprocess the new content
@@ -33,7 +32,6 @@ function formatText() {
     console.error("MathJax rendering error:", err);
   });
 }
-
 function copyToClipboard() {
   const tempElement = document.createElement("textarea");
   tempElement.value = document.getElementById("formattedText").innerText;
