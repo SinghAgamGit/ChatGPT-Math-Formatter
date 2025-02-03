@@ -113,3 +113,81 @@ button:hover {
   font-size: 18px;
   margin-top: 10px;
 }
+/* dark mode stuff */
+:root {
+  --bg-color: #f4f4f4;
+  --text-color: #000;
+  --container-bg: #fff;
+  --button-bg: #007BFF;
+  --button-hover: #0056b3;
+  --copy-button-bg: #28a745;
+  --copy-button-hover: #218838;
+  --textarea-bg: #fff;
+  --border-color: #ccc;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode {
+  --bg-color: #121212; 
+  --text-color: #e0e0e0;
+  --container-bg: #1e1e1e;
+  --button-hover: #e68900;
+  --copy-button-hover: #ffa726;
+  --textarea-bg: #252525;
+  --border-color: #333;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Page styles */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+  background-color: var(--container-bg);
+  box-shadow: 0 0 10px var(--shadow-color);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* General button styles */
+button {
+  display: block;
+  width: fit-content;
+  margin: 15px auto;
+  padding: 10px 20px;
+  border: none;
+  background-color: var(--button-bg);
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+button:hover {
+  background-color: var(--button-hover);
+  transform: scale(1.05);
+}
+
+/* Dark Mode Toggle Button */
+#darkModeToggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+#darkModeToggle:hover {
+  transform: rotate(180deg);
+}
+
+/* Format Button - Colors Controlled by JavaScript */
+#formatBtn {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

@@ -61,3 +61,44 @@ window.onload = () => {
     textInput.setAttribute("placeholder", ""); 
     setTimeout(typeText, 500); 
 };
+// Dark mode toggle function
+document.addEventListener("DOMContentLoaded", function () {
+    const darkModeToggle = document.createElement("button");
+    darkModeToggle.id = "darkModeToggle";
+    document.body.prepend(darkModeToggle);
+
+    const formatBtn = document.getElementById("formatBtn"); // Get Format Button
+
+    function updateTheme() {
+        const isDarkMode = document.body.classList.contains("dark-mode");
+
+        if (isDarkMode) {
+            darkModeToggle.innerHTML = "☀️"; // Sun icon for Light Mode
+            darkModeToggle.style.color = "#fff"; // White icon in dark mode
+
+            // Force format button to yellow in dark mode
+            formatBtn.style.backgroundColor = "#ffcc00";
+            formatBtn.style.color = "black";
+        } else {
+            darkModeToggle.innerHTML = "🌙"; // Moon icon for Dark Mode
+            darkModeToggle.style.color = "#000"; // Black icon in light mode
+
+            // Force format button to blue in light mode
+            formatBtn.style.backgroundColor = "#007BFF";
+            formatBtn.style.color = "white";
+        }
+    }
+
+    darkModeToggle.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+        localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
+        updateTheme();
+    });
+
+    // Load stored theme preference
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+    }
+
+    updateTheme(); // Ensure correct colors on page load
+});
