@@ -1,11 +1,7 @@
 document.getElementById("formatBtn").addEventListener("click", formatText);
 document.getElementById("copyBtn").addEventListener("click", copyToClipboard);
 document.getElementById("toggleModeBtn").addEventListener("click", switchToImageMode);
-document.getElementById("switchToImageMode").addEventListener("click", function () {
-    window.location.href = "image-to-latex.html";
-});
 
-// 📝 Format LaTeX Text Input
 function formatText() {
     const input = document.getElementById("textInput").value.trim();
     const outputDiv = document.getElementById("formattedText");
@@ -100,7 +96,14 @@ document.addEventListener("DOMContentLoaded", function () {
     updateTheme();
 });
 
-// 🔄 Redirect to Image Page
-function switchToImageMode() {
-    window.location.href = "image-to-latex.html";
-}
+document.addEventListener("DOMContentLoaded", function () {
+    const switchBtn = document.getElementById("switchToImageMode");
+    
+    if (switchBtn) {
+        switchBtn.addEventListener("click", function () {
+            window.location.href = "image-to-latex.html";
+        });
+    } else {
+        console.error("Button #switchToImageMode not found!");
+    }
+});
