@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image to LaTeX Converter</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Image to LaTeX Converter</h1>
+    <p>Upload or drag and drop an image containing a mathematical equation, and it will be converted to LaTeX.</p>
+
+    <!-- Drag and Drop Area -->
+    <div id="dropZone">
+      <p>Drag & Drop an Image Here</p>
+      <input type="file" id="imageInput" accept="image/*" hidden>
+    </div>
+    
+    <button id="uploadBtn">Extract Equation</button>
+    <div id="extractedText" style="display: none;"></div>
+    <div id="formattedText"></div>
+    
+    <button id="switchToTextMode">Switch to Text Mode</button>
+  </div>
+
+  <script src="image-script.js"></script>
+</body>
+</html>
