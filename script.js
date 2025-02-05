@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
     const switchBtn = document.getElementById("switchToImageMode");
-    
+
     if (switchBtn) {
         switchBtn.addEventListener("click", function () {
             window.location.href = "image-to-latex.html";

@@ -201,3 +201,21 @@ button:hover {
   display: flex;
   flex-direction: column;
 }
+/* Switch to Image Mode Button - Proper Placement */
+#switchToImageMode {
+  margin-top: 15px;
+  background-color: #ff9800;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+/* Hover Effect */
+#switchToImageMode:hover {
+  background-color: #e68900;
+  transform: scale(1.05);
+}
