@@ -1,30 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image to LaTeX Converter</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/tesseract.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image to LaTeX Converter (pix2tex)</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- MathJax for LaTeX rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    /* Basic styling for the drop zone and buttons */
+    .drop-zone {
+      border: 2px dashed #ccc;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    .drag-over {
+      border-color: #333;
+      background-color: #eee;
+    }
+    button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 1rem;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <h1>Image to LaTeX Converter</h1>
-    <p>Upload or drag and drop an image containing a mathematical equation, and it will be converted to LaTeX.</p>
+    <h1>Image to LaTeX Converter (pix2tex)</h1>
+    <p>
+      Upload or drag and drop an image containing a mathematical equation, and it will be converted to LaTeX using the free pix2tex service on Hugging Face.
+    </p>
 
     <!-- Drag and Drop Area -->
-    <div id="dropZone">
+    <div id="dropZone" class="drop-zone">
       <p>Drag & Drop an Image Here</p>
       <input type="file" id="imageInput" accept="image/*" hidden>
     </div>
-    
+
     <button id="uploadBtn">Extract Equation</button>
+    <button id="switchToTextMode">Switch to Text Mode</button>
+
     <div id="extractedText" style="display: none;"></div>
     <div id="formattedText"></div>
-    
-    <button id="switchToTextMode">Switch to Text Mode</button>
   </div>
 
-  <script src="image-script.js"></script>
+  <script>
+    // Updated API endpoint for the pix2tex model.
+    const apiUrl = "https://api-inference.huggingface.co/models/lukas-blecher/pix2tex";
+
+    // Event listener for the "Extract Equation" button.
+    document.getElementById("uploadBtn").addEventListener("click", function () {
+      extractEquation();
+    });
+
+    // Event listener for the "Switch to Text Mode" button.
+    document.getElementById("switchToTextMode").addEventListener("click", function () {
+      window.location.href = "index.html";
+    });
+
+    const dropZone = document.getElementById("dropZone");
+    const fileInput = document.getElementById("imageInput");
+
+    // Drag & drop events.
+    dropZone.addEventListener("dragover", (event) => {
+      event.preventDefault();
+      dropZone.classList.add("drag-over");
+    });
+
+    dropZone.addEventListener("dragleave", () => {
+      dropZone.classList.remove("drag-over");
+    });
+
+    dropZone.addEventListener("drop", (event) => {
+      event.preventDefault();
+      dropZone.classList.remove("drag-over");
+      if (event.dataTransfer.files.length > 0) {
+        extractEquation(event.dataTransfer.files[0]);
+      }
+    });
+
+    // Clicking on the drop zone opens the file selector.
+    dropZone.addEventListener("click", () => {
+      fileInput.click();
+    });
+
+    // Function to extract the equation from the image.
+    function extractEquation(file) {
+      file = file || fileInput.files[0];
+      if (!file) {
+        alert("Please upload or drag an image first!");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        const imageData = event.target.result;
+        // Prepare the payload (the model accepts a data URL).
+        const payload = { inputs: imageData };
+
+        fetch(apiUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        })
+        .then(response => response.json())
+        .then(result => {
+          if (result.latex) {
+            const latexResult = result.latex;
+            displayResult(latexResult);
+          } else if (result.error) {
+            alert("Error: " + result.error);
+            console.error(result);
+          } else {
+            console.error("Unexpected API response:", result);
+            alert("Unexpected response from the API.");
+          }
+        })
+        .catch(error => {
+          console.error("Error calling the inference API:", error);
+          alert("Error extracting LaTeX. Please try again.");
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Function to display and render the extracted LaTeX.
+    function displayResult(latexCode) {
+      // Display the raw LaTeX code.
+      const extractedTextElem = document.getElementById("extractedText");
+      extractedTextElem.style.display = "block";
+      extractedTextElem.innerHTML = `<strong>Extracted Equation:</strong><br>${latexCode}`;
+      // Render the LaTeX using MathJax.
+      formatExtractedEquation(latexCode);
+    }
+
+    // Function to wrap the LaTeX in delimiters and trigger MathJax rendering.
+    function formatExtractedEquation(text) {
+      const outputDiv = document.getElementById("formattedText");
+      let formattedText = text.replace(/\n/g, " ").trim();
+      formattedText = `<div class="math-output">\\[${formattedText}\\]</div>`;
+      outputDiv.innerHTML = formattedText;
+      
+      if (window.MathJax) {
+        MathJax.typesetPromise([outputDiv]).catch(err =>
+          console.error("MathJax error:", err)
+        );
+      } else {
+        console.error("MathJax is not loaded.");
+      }
+    }
+  </script>
 </body>
 </html>
