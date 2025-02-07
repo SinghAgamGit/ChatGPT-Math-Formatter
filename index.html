@@ -26,10 +26,16 @@
     
     <button id="copyBtn" style="display: none;">Copy to Clipboard</button>
 
-    <!-- 🟢 Moved button inside the container for better placement -->
     <button id="switchToImageMode">Switch to Image Mode</button>
+
+<script>
+    document.getElementById("switchToImageMode").addEventListener("click", function() {
+        window.location.href = "image-to-latex.html";
+    });
+</script>
+
   </div>
 
-  <script src="script.js"></script>
+  <script src="spt.js"></script>
 </body>
 </html>
